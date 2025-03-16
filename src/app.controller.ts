@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -39,5 +39,20 @@ export class AppController {
     @Query('offset') offset: number = 0,
   ): string {
     return `Products: limit => ${limit}, offset => ${offset}`;
+  }
+
+  // Creacion de un metodo POST
+  @Post()
+  create() {
+    return 'Create action';
+  }
+
+  // Con Body
+  @Post('products')
+  createProduct(@Body() payload: string) {
+    return {
+      message: 'Action to create',
+      payload,
+    };
   }
 }
